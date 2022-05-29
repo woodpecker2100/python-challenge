@@ -1,3 +1,4 @@
+import os
 import csv
 
 # Files to load (Remember to change these)
@@ -40,4 +41,25 @@ with open(file_to_load) as election_data:
     print("Total for Li: ", len(candidate3), ", ", 100*(len(candidate3)/len(number_of_votes)), "%")
     print("Total for O'Tooley: ", len(candidate4), ", ", 100*(len(candidate4)/len(number_of_votes)), "%")
     print("-------------------------")
+
+# 
+
+# Specify the file to write to
+output_path = os.path.join("PyPoll", "analysis", "analysis.csv")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    # Write the first row (column headers)
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["-------------------------"])
+    csvwriter.writerow(["Total Votes: ", len(number_of_votes)])
+    csvwriter.writerow(["Total for Khan: ", len(candidate1), ", ", 100*(len(candidate1)/len(number_of_votes)), "%"])
+    csvwriter.writerow(["Total for Correy: ", len(candidate2), ", ", 100*(len(candidate2)/len(number_of_votes)), "%"])
+    csvwriter.writerow(["Total for Li: ", len(candidate3), ", ", 100*(len(candidate3)/len(number_of_votes)), "%"])
+    csvwriter.writerow(["Total for O'Tooley: ", len(candidate4), ", ", 100*(len(candidate4)/len(number_of_votes)), "%"])
+    csvwriter.writerow(["-------------------------"])
+
+    
 
