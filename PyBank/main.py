@@ -1,4 +1,5 @@
 import csv
+import os
 
 # Files to load (Remember to change these)
 file_to_load = "PyBank/Resources/budget_data.csv"
@@ -39,3 +40,19 @@ with open(file_to_load) as revenue_data:
     print("Average  Change: $", round(avg_rev_change))
     print("Greatest Increase in Profits: ", max_rev_change_date,"($", max_rev_change,")")
     print("Greatest Decrease in Profits: ", min_rev_change_date,"($", min_rev_change,")")
+
+
+
+# Specify the file to write to
+output_path = os.path.join("PyBank", "analysis", "analysis.csv")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    # Write the first row (column headers)
+    csvwriter.writerow(["Total Months: ", len(date)])
+    csvwriter.writerow(["Total: $", sum(revenue)])
+    csvwriter.writerow(["Average  Change: $", round(avg_rev_change)])
+    csvwriter.writerow(["Greatest Increase in Profits: ", max_rev_change_date,"($", max_rev_change,")"])
+    csvwriter.writerow(["Greatest Decrease in Profits: ", min_rev_change_date,"($", min_rev_change,")"])
